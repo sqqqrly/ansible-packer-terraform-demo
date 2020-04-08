@@ -3,3 +3,6 @@ packer/variables.json
 .env
 .terraform
 *.tfstate*
+*.swp
+*.swo
+*.un~

@@ -1,8 +1,10 @@
-include .env
-export $(shell sed 's/=.*//' .env)
+# include .env
+# export $(shell sed 's/=.*//' .env)
 
 terraform-init:
-	cd terraform && terraform init && cd -
+	cd terraform && \
+	terraform init && \
+	cd -
 
 terraform-plan:
 	cd terraform && \
@@ -16,5 +18,6 @@ terraform-apply:
 
 packer-build:
 	cd packer && \
-	packer build template.json && \
+	rm -rf output-ubuntu1804-qemu-iso/ && \
+	packer build -only=qemu -var-file=ubuntu1804.json ubuntu.json && \
 	cd -
